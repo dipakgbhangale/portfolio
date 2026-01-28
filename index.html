@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dipak Bhangale | Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" data-cursor-dot></div>
+    <div class="cursor-outline" data-cursor-outline></div>
+
+    <!-- Background Canvas -->
+    <canvas id="canvas-bg"></canvas>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container nav-content">
+            <a href="#" class="logo">
+                <img src="Assets/DP_logo.jpg.jpeg" alt="Dipak Bhangale" class="nav-logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Hi, I'm Dipak Bhangale</h1>
+                <div class="hero-subtitle">
+                    I am a <span id="typing-text"></span>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary" data-cursor-magnetic>View Work</a>
+                    <a href="#contact" class="btn btn-outline" data-cursor-magnetic>Contact Me</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="image-wrapper" data-tilt>
+                    <!-- Placeholder for large photo -->
+                    <img src="Assets/DP_logo.jpg.jpeg" alt="Dipak Bhangale Profile">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="container">
+        <br><br>
+        <h2 class="section-title">About Me</h2>
+        <div class="card" data-tilt>
+            <p style="font-size: 1.1rem; color: var(--text-muted);">
+                I am an IT student with a good foundation in programming, databases, networking, cyber security and web
+                technologies.
+                I like working in a team, sharing ideas, and completing tasks that add value to the project.
+                With a passion for building secure and efficient web solutions, I am constantly learning and evolving in
+                the tech landscape.
+            </p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="container">
+        <br><br><br>
+        <h2 class="section-title">Technical Skills</h2>
+
+        <div class="skill-category">
+            <h3 class="category-title">Web Development</h3>
+            <div class="skills-grid">
+                <div class="skill-item" data-tilt>
+                    <i class="fa-brands fa-html5 skill-icon" style="color: #e34f26;"></i>
+                    <h3>HTML</h3>
+                </div>
+                <div class="skill-item" data-tilt>
+                    <i class="fa-brands fa-css3-alt skill-icon" style="color: #264de4;"></i>
+                    <h3>CSS</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="skill-category">
+            <h3 class="category-title">Programming Languages</h3>
+            <div class="skills-grid">
+                <div class="skill-item" data-tilt>
+                    <i class="fa-brands fa-python skill-icon" style="color: #3776ab;"></i>
+                    <h3>Python</h3>
+                </div>
+                <div class="skill-item" data-tilt>
+                    <i class="fa-solid fa-code skill-icon" style="color: #00599C;"></i>
+                    <h3>C++</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="skill-category">
+            <h3 class="category-title">Database</h3>
+            <div class="skills-grid">
+                <div class="skill-item" data-tilt>
+                    <i class="fa-solid fa-database skill-icon" style="color: #00758f;"></i>
+                    <h3>MySQL</h3>
+                </div>
+                <div class="skill-item" data-tilt>
+                    <i class="fa-solid fa-server skill-icon" style="color: #003B57;"></i>
+                    <h3>SQLite3</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="skill-category">
+            <h3 class="category-title">Tools</h3>
+            <div class="skills-grid">
+                <div class="skill-item" data-tilt>
+                    <i class="fa-solid fa-code skill-icon" style="color: #007acc;"></i>
+                    <h3>VS Code</h3>
+                </div>
+                <div class="skill-item" data-tilt>
+                    <i class="fa-solid fa-rocket skill-icon" style="color: #6C63FF;"></i>
+                    <h3>Antigravity</h3>
+                </div>
+                <div class="skill-item" data-tilt>
+                    <i class="fa-solid fa-server skill-icon" style="color: #fb7a24;"></i>
+                    <h3>XAMPP</h3>
+                </div>
+                <div class="skill-item" data-tilt>
+                    <i class="fa-solid fa-shield-virus skill-icon" style="color: #00aff0;"></i>
+                    <h3>MS Threat Modelling</h3>
+                </div>
+                <div class="skill-item" data-tilt>
+                    <i class="fa-brands fa-linux skill-icon" style="color: #18345e;"></i>
+                    <h3>VirtualBox</h3>
+                </div>
+                <div class="skill-item" data-tilt>
+                    <i class="fa-solid fa-desktop skill-icon" style="color: #607d8b;"></i>
+                    <h3>VMware</h3>
+                </div>
+                <div class="skill-item" data-tilt>
+                    <i class="fa-solid fa-network-wired skill-icon" style="color: #f36f21;"></i>
+                    <h3>Wireshark</h3>
+                </div>
+                <div class="skill-item" data-tilt>
+                    <i class="fa-solid fa-eye skill-icon" style="color: #444;"></i>
+                    <h3>Nmap</h3>
+                </div>
+                <div class="skill-item" data-tilt>
+                    <i class="fa-solid fa-bolt skill-icon" style="color: #ff0000;"></i>
+                    <h3>Macromedia Flash 8</h3>
+                </div>
+                <div class="skill-item" data-tilt>
+                    <i class="fa-solid fa-cube skill-icon" style="color: #ea7600;"></i>
+                    <h3>Blender</h3>
+                </div>
+                <div class="skill-item" data-tilt>
+                    <i class="fa-solid fa-camera skill-icon" style="color: #31a8ff;"></i>
+                    <h3>Adobe Photoshop</h3>
+                </div>
+                <div class="skill-item" data-tilt>
+                    <i class="fa-solid fa-video skill-icon" style="color: #9999ff;"></i>
+                    <h3>Premiere Pro</h3>
+                </div>
+                <div class="skill-item" data-tilt>
+                    <i class="fa-solid fa-film skill-icon" style="color: #00cc99;"></i>
+                    <h3>Wondershare Filmora</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="skill-category">
+            <h3 class="category-title">OS</h3>
+            <div class="skills-grid">
+                <div class="skill-item" data-tilt>
+                    <i class="fa-brands fa-windows skill-icon" style="color: #00a4ef;"></i>
+                    <h3>Windows</h3>
+                </div>
+                <div class="skill-item" data-tilt>
+                    <i class="fa-brands fa-linux skill-icon" style="color: white;"></i>
+                    <h3>Linux</h3>
+                </div>
+                <div class="skill-item" data-tilt>
+                    <i class="fa-brands fa-ubuntu skill-icon" style="color: #E95420;"></i>
+                    <h3>Ubuntu</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="container">
+        <br><br><br>
+        <h2 class="section-title">Experience & Education</h2>
+
+        <div class="timeline">
+            <!-- Education 1 (Current) -->
+            <div class="timeline-item">
+                <div class="timeline-content card" data-tilt>
+                    <span class="timeline-date">2023 – 2026</span>
+                    <h3>B.E in Information Technology</h3>
+                    <h4 style="color: var(--primary);">A. P. Shah Institute of Technology, Thane</h4>
+                    <p style="color: var(--text-muted);">CGPA: 7.8 (Current)</p>
+                </div>
+            </div>
+
+            <!-- Experience -->
+            <div class="timeline-item">
+                <div class="timeline-content card" data-tilt>
+                    <span class="timeline-date">Jan 2023 – May 2023</span>
+                    <h3>Web Developer / Designer Intern</h3>
+                    <h4 style="color: var(--primary); margin-bottom: 0.5rem;">D-park Software Solutions and Consultancy
+                    </h4>
+                    <p style="color: var(--text-muted);">
+                        Assisted in website design using WordPress. Learned domain purchasing, hosting, and launching
+                        sites.
+                        Explored plugins, templates, and WordPress customization.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Education 2 -->
+            <div class="timeline-item">
+                <div class="timeline-content card" data-tilt>
+                    <span class="timeline-date">2020 – 2023</span>
+                    <h3>Diploma in Information Technology</h3>
+                    <h4 style="color: var(--primary);">Government Polytechnic, Mumbai</h4>
+                    <p style="color: var(--text-muted);">Percentage: 82.75%</p>
+                </div>
+            </div>
+
+            <!-- Education 3 -->
+            <div class="timeline-item">
+                <div class="timeline-content card" data-tilt>
+                    <span class="timeline-date">2019 – 2020</span>
+                    <h3>SSC</h3>
+                    <h4 style="color: var(--primary);">Shri Shivaji Vidyalaya, Buldana</h4>
+                    <p style="color: var(--text-muted);">Percentage: 90.20%</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="container">
+        <br><br><br>
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            <!-- Project 1 -->
+            <div class="card project-card" data-tilt>
+                <h3>APSIT NOTIFY</h3>
+                <div class="project-tags">
+                    <span class="tag">React</span>
+                    <span class="tag">EmailJS</span>
+                    <span class="tag">Web App</span>
+                </div>
+                <p style="color: var(--text-muted); margin-bottom: 1rem; flex-grow: 1;">
+                    A React-based web app for scheduling reminders with secure login and real-time alerts via EmailJS
+                    and on-screen notifications.
+                </p>
+                <button class="btn btn-primary view-details-btn" data-project="project1" style="text-align: center;"
+                    data-cursor-magnetic>View Details</button>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="card project-card" data-tilt>
+                <h3>Retail Billing System</h3>
+                <div class="project-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Tkinter</span>
+                    <span class="tag">Desktop App</span>
+                </div>
+                <p style="color: var(--text-muted); margin-bottom: 1rem; flex-grow: 1;">
+                    A Python desktop application with admin and employee roles, enabling inventory management and bill
+                    generation using local file storage.
+                </p>
+                <button class="btn btn-primary view-details-btn" data-project="project2" style="text-align: center;"
+                    data-cursor-magnetic>View Details</button>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="card project-card" data-tilt>
+                <h3>QUICKDEAL</h3>
+                <div class="project-tags">
+                    <span class="tag">HTML/CSS</span>
+                    <span class="tag">E-Commerce</span>
+                </div>
+                <p style="color: var(--text-muted); margin-bottom: 1rem; flex-grow: 1;">
+                    Designed a Static Website for a clothing business where customers can browse and buy clothes.
+                </p>
+                <button class="btn btn-primary view-details-btn" data-project="project3" style="text-align: center;"
+                    data-cursor-magnetic>View Details</button>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="card project-card" data-tilt>
+                <h3>College Application (GPM Indicator)</h3>
+                <div class="project-tags">
+                    <span class="tag">Android/Web</span>
+                    <span class="tag">Education</span>
+                </div>
+                <p style="color: var(--text-muted); margin-bottom: 1rem; flex-grow: 1;">
+                    A college app for students and faculty for pushing notices, alerts, event updates, and sharing study
+                    materials.
+                </p>
+                <button class="btn btn-primary view-details-btn" data-project="project4" style="text-align: center;"
+                    data-cursor-magnetic>View Details</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modal Structure -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-title">Project Title</h2>
+            <div id="modal-body">
+                <!-- Content injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="container">
+        <br><br><br>
+        <h2 class="section-title">Certifications</h2>
+
+        <div class="certificates-wrapper">
+            <div class="certificates-grid" id="certificates-grid">
+                <!-- Certificate 1 -->
+                <div class="certificate-card" data-tilt>
+                    <div class="cert-image-wrapper">
+                        <img src="Certificates/Accessing Hadoop Data Using Hive Cognitive class.png"
+                            alt="Accessing Hadoop Data Using Hive">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Accessing Hadoop Data Using Hive</h3>
+                        <a href="Certificates/Accessing Hadoop Data Using Hive Cognitive class.png" target="_blank"
+                            class="view-cert-btn" data-cursor-magnetic>View Certificate</a>
+                    </div>
+                </div>
+
+                <!-- Certificate 2 -->
+                <div class="certificate-card" data-tilt>
+                    <div class="cert-image-wrapper">
+                        <img src="Certificates/Build Your Own ChatBot Cognitive Class.png" alt="Build Your Own ChatBot">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Build Your Own ChatBot</h3>
+                        <a href="Certificates/Build Your Own ChatBot Cognitive Class.png" target="_blank"
+                            class="view-cert-btn" data-cursor-magnetic>View Certificate</a>
+                    </div>
+                </div>
+
+                <!-- Certificate 3 -->
+                <div class="certificate-card" data-tilt>
+                    <div class="cert-image-wrapper">
+                        <img src="Certificates/CCNA-Introduction to Networks Cisco.png"
+                            alt="CCNA Introduction to Networks">
+                    </div>
+                    <div class="cert-info">
+                        <h3>CCNA: Introduction to Networks</h3>
+                        <a href="Certificates/CCNA-Introduction to Networks Cisco.png" target="_blank"
+                            class="view-cert-btn" data-cursor-magnetic>View Certificate</a>
+                    </div>
+                </div>
+
+                <!-- Certificate 4 -->
+                <div class="certificate-card" data-tilt>
+                    <div class="cert-image-wrapper">
+                        <img src="Certificates/Data Analysis with Python IBM Cognitive Class.png"
+                            alt="Data Analysis with Python">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Data Analysis with Python</h3>
+                        <a href="Certificates/Data Analysis with Python IBM Cognitive Class.png" target="_blank"
+                            class="view-cert-btn" data-cursor-magnetic>View Certificate</a>
+                    </div>
+                </div>
+
+                <!-- Certificate 5 -->
+                <div class="certificate-card" data-tilt>
+                    <div class="cert-image-wrapper">
+                        <img src="Certificates/Ethical Hacking EduSkills.png" alt="Ethical Hacking (EduSkills)">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Ethical Hacking (EduSkills)</h3>
+                        <a href="Certificates/Ethical Hacking EduSkills.png" target="_blank" class="view-cert-btn"
+                            data-cursor-magnetic>View
+                            Certificate</a>
+                    </div>
+                </div>
+
+                <!-- Certificate 6 -->
+                <div class="certificate-card" data-tilt>
+                    <div class="cert-image-wrapper">
+                        <img src="Certificates/GenAI 101 with pieces.png" alt="GenAI 101 with Pieces">
+                    </div>
+                    <div class="cert-info">
+                        <h3>GenAI 101 with Pieces</h3>
+                        <a href="Certificates/GenAI 101 with pieces.png" target="_blank" class="view-cert-btn"
+                            data-cursor-magnetic>View
+                            Certificate</a>
+                    </div>
+                </div>
+
+                <!-- Certificate 7 -->
+                <div class="certificate-card" data-tilt>
+                    <div class="cert-image-wrapper">
+                        <img src="Certificates/Introduction to Networking for Cyber Profectionals Zscaler.png"
+                            alt="Introduction to Networking for Cyber Professionals">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Introduction to Networking</h3>
+                        <a href="Certificates/Introduction to Networking for Cyber Profectionals Zscaler.png"
+                            target="_blank" class="view-cert-btn" data-cursor-magnetic>View Certificate</a>
+                    </div>
+                </div>
+
+                <!-- Certificate 8 -->
+                <div class="certificate-card" data-tilt>
+                    <div class="cert-image-wrapper">
+                        <img src="Certificates/LaTeX.png" alt="LaTeX Training">
+                    </div>
+                    <div class="cert-info">
+                        <h3>LaTeX Training</h3>
+                        <a href="Certificates/LaTeX.png" target="_blank" class="view-cert-btn" data-cursor-magnetic>View
+                            Certificate</a>
+                    </div>
+                </div>
+
+                <!-- Certificate 9 -->
+                <div class="certificate-card" data-tilt>
+                    <div class="cert-image-wrapper">
+                        <img src="Certificates/NDG Linux Essentials.png" alt="Linux Essentials">
+                    </div>
+                    <div class="cert-info">
+                        <h3>NDG Linux Essentials</h3>
+                        <a href="Certificates/NDG Linux Essentials.png" target="_blank" class="view-cert-btn"
+                            data-cursor-magnetic>View
+                            Certificate</a>
+                    </div>
+                </div>
+
+                <!-- Certificate 10 -->
+                <div class="certificate-card" data-tilt>
+                    <div class="cert-image-wrapper">
+                        <img src="Certificates/PCAP-Programming Essentials in Python Cisco.png"
+                            alt="PCAP Python Essentials">
+                    </div>
+                    <div class="cert-info">
+                        <h3>PCAP: Python Essentials</h3>
+                        <a href="Certificates/PCAP-Programming Essentials in Python Cisco.png" target="_blank"
+                            class="view-cert-btn" data-cursor-magnetic>View Certificate</a>
+                    </div>
+                </div>
+
+                <!-- Certificate 11 -->
+                <div class="certificate-card" data-tilt>
+                    <div class="cert-image-wrapper">
+                        <img src="Certificates/Prompt Engineering for Everyone IBM Cognitive Class.png"
+                            alt="Prompt Engineering">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Prompt Engineering for Everyone</h3>
+                        <a href="Certificates/Prompt Engineering for Everyone IBM Cognitive Class.png" target="_blank"
+                            class="view-cert-btn" data-cursor-magnetic>View Certificate</a>
+                    </div>
+                </div>
+
+                <!-- Certificate 12 -->
+                <div class="certificate-card" data-tilt>
+                    <div class="cert-image-wrapper">
+                        <img src="Certificates/ethical Hacking cisco.png" alt="Ethical Hacking (Cisco)">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Ethical Hacking (Cisco)</h3>
+                        <a href="Certificates/ethical Hacking cisco.png" target="_blank" class="view-cert-btn"
+                            data-cursor-magnetic>View
+                            Certificate</a>
+                    </div>
+                </div>
+
+                <!-- Certificate 13 -->
+                <div class="certificate-card" data-tilt>
+                    <div class="cert-image-wrapper">
+                        <img src="Certificates/introduction to IoT and Digital Transformation Cisco.png"
+                            alt="IoT and Digital Transformation">
+                    </div>
+                    <div class="cert-info">
+                        <h3>IoT and Digital Transformation</h3>
+                        <a href="Certificates/introduction to IoT and Digital Transformation Cisco.png" target="_blank"
+                            class="view-cert-btn" data-cursor-magnetic>View Certificate</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="load-more-container">
+            <button id="load-more-btn" class="btn btn-primary" data-cursor-magnetic>Show More Certificates</button>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container">
+        <br><br><br>
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-form">
+            <form id="contactForm">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="name" class="form-control" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="email" class="form-control" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea id="message" class="form-control" rows="5" placeholder="How can I help you?"
+                        required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;" data-cursor-magnetic>Send
+                    Message</button>
+            </form>
+            <div style="text-align: center; margin-top: 2rem;">
+                <p style="color: var(--text-muted);">
+                    <i class="fa-solid fa-envelope"></i> dipakbhangale@gmail.com <br>
+                    <i class="fa-solid fa-phone"></i> +91 7499863199
+                </p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/dipak_g_bhangale/" target="_blank" class="social-icon"
+                        data-cursor-magnetic>
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/dipak-bhangale-86041924a/" target="_blank" class="social-icon"
+                        data-cursor-magnetic>
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/dipakgbhangale" target="_blank" class="social-icon"
+                        data-cursor-magnetic>
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Dipak Bhangale. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
