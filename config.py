@@ -15,6 +15,11 @@ class Config:
     @staticmethod
     def init_app(app):
         # Create upload directories if they don't exist
-        os.makedirs(os.path.join(Config.UPLOAD_FOLDER, 'hero'), exist_ok=True)
-        os.makedirs(os.path.join(Config.UPLOAD_FOLDER, 'certificates'), exist_ok=True)
-        os.makedirs(os.path.join(Config.UPLOAD_FOLDER, 'icons'), exist_ok=True)
+        # Skip on Vercel (read-only file system)
+        if not os.environ.get('VERCEL'):
+            try:
+                os.makedirs(os.path.join(Config.UPLOAD_FOLDER, 'hero'), exist_ok=True)
+                os.makedirs(os.path.join(Config.UPLOAD_FOLDER, 'certificates'), exist_ok=True)
+                os.makedirs(os.path.join(Config.UPLOAD_FOLDER, 'icons'), exist_ok=True)
+            except Exception as e:
+                print(f"Warning: Could not create upload directories. {e}")
