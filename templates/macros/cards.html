@@ -1,0 +1,41 @@
+{% macro project_card(project) %}
+<div class="card project-card" data-tilt>
+    <h3>{{ project.title }}</h3>
+    <div class="project-tags">
+        {% for tag in project.tags %}
+        <span class="tag">{{ tag }}</span>
+        {% endfor %}
+    </div>
+    <p style="color: var(--text-muted); margin-bottom: 1rem; flex-grow: 1;">
+        {{ project.description }}
+    </p>
+    <button class="btn btn-primary view-details-btn" data-project="{{ project.id }}" style="text-align: center;"
+        data-cursor-magnetic>View Details</button>
+</div>
+{% endmacro %}
+
+{% macro skill_category(category) %}
+<div class="skill-category">
+    <h3 class="category-title">{{ category.category }}</h3>
+    <div class="skills-grid">
+        {% for skill in category['items'] %}
+        <div class="skill-item" data-tilt>
+            {% if 'fa-' in skill.icon %}
+            <i class="{{ skill.icon }} skill-icon" style="color: {{ skill.color }};"></i>
+            {% else %}
+            {# Assume it is an image path #}
+            {% if skill.icon %}
+            <img src="{{ url_for('static', filename=skill.icon.replace('static/','').replace('\\','/')) }}"
+                alt="{{ skill.name }}" class="skill-icon"
+                style="width: 50px; height: 50px; object-fit: contain; margin-bottom: 0.5rem; display: block; margin-left: auto; margin-right: auto;">
+            {% else %}
+            {# Fallback default icon #}
+            <i class="fa-solid fa-code skill-icon" style="color: {{ skill.color }};"></i>
+            {% endif %}
+            {% endif %}
+            <h3>{{ skill.name }}</h3>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endmacro %}

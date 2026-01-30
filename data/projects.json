@@ -1,0 +1,46 @@
+[
+    {
+        "title": "APSIT NOTIFY",
+        "description": "A comprehensive notification system for college students.",
+        "modal_content": "A React-based web app for scheduling reminders with secure login and real-time alerts via \nEmailJS and on-screen notifications\nKey Features:\n- Secure Login System\n- Real-time Email Alerts (EmailJS)\n- Responsive Dashboard\n- Scheduled Reminders",
+        "tags": [
+            "ReactJS",
+            "Java Script",
+            "HTML",
+            "CSS",
+            "EmailJS"
+        ],
+        "id": "project-1769695057952"
+    },
+    {
+        "description": "A Python desktop application with admin and employee roles, enabling inventory management and bill generation using local file storage.",
+        "id": "project2",
+        "modal_content": "A desktop application for small businesses to manage billing and inventory.<br><br><b>Tech Stack:</b> Python, Tkinter<br><b>Features:</b><br>- Admin/Employee Login<br>- Invoice Generation<br>- Inventory Tracking",
+        "tags": [
+            "Python",
+            "Tkinter",
+            "Desktop App"
+        ],
+        "title": "Retail Billing System"
+    },
+    {
+        "description": "Designed a Static Website for a clothing business where customers can browse and buy clothes.",
+        "id": "project3",
+        "modal_content": "An E-Commerce landing page design.<br><br><b>Focus:</b><br>- Modern UI/UX<br>- Responsive Grid Layouts<br>- Product Showcases",
+        "tags": [
+            "HTML/CSS",
+            "E-Commerce"
+        ],
+        "title": "QUICKDEAL"
+    },
+    {
+        "description": "A college app for students and faculty for pushing notices, alerts, event updates, and sharing study materials.",
+        "id": "project4",
+        "modal_content": "Android/Web solution for Government Polytechnic Mumbai.<br><br><b>Utility:</b><br>- Notice Board updates<br>- Event Calendars<br>- Resource Sharing",
+        "tags": [
+            "Android/Web",
+            "Education"
+        ],
+        "title": "College Application (GPM Indicator)"
+    }
+]

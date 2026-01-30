@@ -1,3 +1,16 @@
 .vscode
 inst.txt
 UI_structure.md
+.env
+Initial_Static_Data/
+
+# Python
+venv/
+env/
+*.log
+instance/
+.DS_Store
+__pycache__/
+*.pyc
+
+

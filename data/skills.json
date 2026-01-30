@@ -1,0 +1,137 @@
+[
+    {
+        "category": "Web Development",
+        "items": [
+            {
+                "color": "#ee11dc",
+                "icon": "fa-brands fa-css3-alt",
+                "name": "CSS"
+            },
+            {
+                "color": "#e3630d",
+                "icon": "fa-brands fa-html5",
+                "name": "HTML"
+            }
+        ]
+    },
+    {
+        "category": "Programming Languages",
+        "items": [
+            {
+                "color": "#3776ab",
+                "icon": "fa-brands fa-python",
+                "name": "Python"
+            },
+            {
+                "color": "#00599C",
+                "icon": "fa-solid fa-code",
+                "name": "C++"
+            }
+        ]
+    },
+    {
+        "category": "Database",
+        "items": [
+            {
+                "color": "#00758f",
+                "icon": "fa-solid fa-database",
+                "name": "MySQL"
+            },
+            {
+                "color": "#003B57",
+                "icon": "fa-solid fa-server",
+                "name": "SQLite3"
+            }
+        ]
+    },
+    {
+        "category": "Tools",
+        "items": [
+            {
+                "color": "#007acc",
+                "icon": "fa-solid fa-code",
+                "name": "VS Code"
+            },
+            {
+                "color": "#6C63FF",
+                "icon": "fa-solid fa-rocket",
+                "name": "Antigravity"
+            },
+            {
+                "color": "#fb7a24",
+                "icon": "fa-solid fa-server",
+                "name": "XAMPP"
+            },
+            {
+                "color": "#00aff0",
+                "icon": "fa-solid fa-shield-virus",
+                "name": "MS Threat Modelling"
+            },
+            {
+                "color": "#18345e",
+                "icon": "fa-brands fa-linux",
+                "name": "VirtualBox"
+            },
+            {
+                "color": "#607d8b",
+                "icon": "fa-solid fa-desktop",
+                "name": "VMware"
+            },
+            {
+                "color": "#f36f21",
+                "icon": "fa-solid fa-network-wired",
+                "name": "Wireshark"
+            },
+            {
+                "color": "#444",
+                "icon": "fa-solid fa-eye",
+                "name": "Nmap"
+            },
+            {
+                "color": "#ff0000",
+                "icon": "fa-solid fa-bolt",
+                "name": "Macromedia Flash 8"
+            },
+            {
+                "color": "#ea7600",
+                "icon": "fa-solid fa-cube",
+                "name": "Blender"
+            },
+            {
+                "color": "#31a8ff",
+                "icon": "fa-solid fa-camera",
+                "name": "Adobe Photoshop"
+            },
+            {
+                "color": "#9999ff",
+                "icon": "fa-solid fa-video",
+                "name": "Premiere Pro"
+            },
+            {
+                "color": "#00cc99",
+                "icon": "fa-solid fa-film",
+                "name": "Wondershare Filmora"
+            }
+        ]
+    },
+    {
+        "category": "OS",
+        "items": [
+            {
+                "color": "#00a4ef",
+                "icon": "fa-brands fa-windows",
+                "name": "Windows"
+            },
+            {
+                "color": "white",
+                "icon": "fa-brands fa-linux",
+                "name": "Linux"
+            },
+            {
+                "color": "#E95420",
+                "icon": "fa-brands fa-ubuntu",
+                "name": "Ubuntu"
+            }
+        ]
+    }
+]

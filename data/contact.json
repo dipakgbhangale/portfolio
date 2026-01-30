@@ -1,0 +1,24 @@
+{
+    "email": "dipakbhangale@gmail.com",
+    "phone": "+91 7499863199",
+    "social_links": [
+        {
+            "icon": "fa-brands fa-instagram",
+            "name": "Instagram",
+            "url": "https://www.instagram.com/dipak_g_bhangale/",
+            "platform": "Instagram"
+        },
+        {
+            "icon": "fa-brands fa-linkedin",
+            "name": "LinkedIn",
+            "url": "https://www.linkedin.com/in/dipak-bhangale-86041924a/",
+            "platform": "Linked in"
+        },
+        {
+            "icon": "fa-brands fa-github",
+            "name": "GitHub",
+            "url": "https://github.com/dipakgbhangale",
+            "platform": "Github"
+        }
+    ]
+}

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Admin Specific Styles */
+        body {
+            display: flex;
+            min-height: 100vh;
+            overflow: hidden;
+            /* Prevent body scroll, handle in content */
+        }
+
+        .admin-sidebar {
+            width: 250px;
+            background: rgba(15, 23, 42, 0.95);
+            border-right: 1px solid var(--border);
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .admin-nav-btn {
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--text-muted);
+            padding: 1rem;
+            text-align: left;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .admin-nav-btn:hover,
+        .admin-nav-btn.active {
+            background: rgba(34, 211, 238, 0.1);
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .admin-content {
+            flex: 1;
+            height: 100vh;
+            overflow-y: auto;
+            background: var(--bg-dark);
+            position: relative;
+            padding: 2rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: var(--bg-dark);
+            z-index: 10;
+            padding-top: 1rem;
+        }
+
+        .form-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding-bottom: 5rem;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 1.5rem;
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border);
+            border-radius: 0.3rem;
+            color: white;
+            font-family: inherit;
+        }
+
+        .item-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .list-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .remove-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #ef4444;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .add-btn {
+            width: 100%;
+            margin-top: 1rem;
+            padding: 1rem;
+            border: 2px dashed var(--border);
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .add-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Image Upload Preview */
+        .image-preview {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-top: 10px;
+            border: 1px solid var(--border);
+            background: black;
+        }
+
+        .upload-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        /* Status Messages */
+        #status-msg {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            display: transform 0.3s;
+            transform: translateY(150%);
+            z-index: 2000;
+        }
+
+        #status-msg.show {
+            transform: translateY(0);
+        }
+
+        .success {
+            background: #10b981;
+            color: white;
+        }
+
+        .error {
+            background: #ef4444;
+            color: white;
+        }
+
+        /* Icon Picker */
+        .icon-picker-options {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .radio-label {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--text-muted);
+        }
+
+        .radio-label input:checked+span {
+            color: var(--primary);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="admin-sidebar">
+        <h2 style="color: white; margin-bottom: 1rem; padding-left: 0.5rem;">
+            <i class="fa-solid fa-rocket"></i> Admin
+        </h2>
+        <button class="admin-nav-btn active" onclick="loadSection('hero')">
+            <i class="fa-solid fa-house"></i> Hero
+        </button>
+        <button class="admin-nav-btn" onclick="loadSection('about')">
+            <i class="fa-solid fa-user"></i> About Me
+        </button>
+        <button class="admin-nav-btn" onclick="loadSection('skills')">
+            <i class="fa-solid fa-code"></i> Skills
+        </button>
+        <button class="admin-nav-btn" onclick="loadSection('experience')">
+            <i class="fa-solid fa-briefcase"></i> Experience
+        </button>
+        <button class="admin-nav-btn" onclick="loadSection('projects')">
+            <i class="fa-solid fa-laptop-code"></i> Projects
+        </button>
+        <button class="admin-nav-btn" onclick="loadSection('certificates')">
+            <i class="fa-solid fa-certificate"></i> Certificates
+        </button>
+        <button class="admin-nav-btn" onclick="loadSection('contact')">
+            <i class="fa-solid fa-address-book"></i> Contact
+        </button>
+
+        <div style="flex-grow: 1;"></div>
+
+        <a href="{{ url_for('auth.logout') }}" class="admin-nav-btn"
+            style="color: #ef4444; border-color: rgba(239, 68, 68, 0.2);">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </a>
+
+    </div>
+
+    <!-- Main Content -->
+    <div class="admin-content">
+        <div class="section-header">
+            <h1 id="page-title">Hero Section</h1>
+            <a href="{{ url_for('main.home') }}" target="_blank" class="btn btn-outline"
+                style="border-color: var(--primary); color: var(--primary);">
+                <i class="fa-solid fa-external-link"></i> View Site
+            </a>
+        </div>
+
+        <div id="dynamic-form" class="form-container">
+            <!-- Forms will be injected here by admin.js -->
+            <div style="text-align: center; color: var(--text-muted); margin-top: 5rem;">
+                <i class="fa-solid fa-spinner fa-spin" style="font-size: 2rem;"></i>
+                <p>Loading data...</p>
+            </div>
+        </div>
+    </div>
+
+    <button id="floating-save-btn" onclick="saveCurrentSection()"
+        style="position: fixed; bottom: 30px; right: 30px; background: var(--primary); color: black; border: none; padding: 1rem 2rem; border-radius: 50px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(34, 211, 238, 0.4); z-index: 1000; display: flex; align-items: center; gap: 10px; font-size: 1.1rem;">
+        <i class="fa-solid fa-save"></i> Save Changes
+    </button>
+
+    <div id="status-msg">Changes Saved!</div>
+
+    <script>
+        const API_BASE = "/admin/update/";
+        const UPLOAD_API = "/admin/upload";
+        // Inject initial data from Flask
+        window.ADMIN_DATA = {{ data | tojson }};
+        const csrf_token = "{{ csrf_token() }}";
+    </script>
+    <script src="{{ url_for('static', filename='admin.js') }}"></script>
+</body>
+
+</html>

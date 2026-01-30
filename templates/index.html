@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ hero.title }} | Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <!-- Config File -->
+    <script src="{{ url_for('static', filename='config.js') }}"></script>
+    <script type="text/javascript">
+        (function () {
+            // Initialize EmailJS from config file
+            if (typeof CONFIG !== 'undefined') {
+                emailjs.init(CONFIG.EMAILJS_PUBLIC_KEY);
+            } else {
+                console.error("Config file not loaded!");
+            }
+        })();
+    </script>
+</head>
+
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" data-cursor-dot></div>
+    <div class="cursor-outline" data-cursor-outline></div>
+
+    <!-- Background Canvas -->
+    <canvas id="canvas-bg"></canvas>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container nav-content">
+            <a href="#" class="logo">
+                {% if hero.image %}
+                <img src="{{ url_for('static', filename=hero.image.replace('static/', '').replace('\\', '/')) }}"
+                    alt="Logo" class="nav-logo"
+                    style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+                {% else %}
+                <span>Dipak Bhangale</span>
+                {% endif %}
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>{{ hero.title }}</h1>
+                <div class="hero-subtitle">
+                    I am a <span id="typing-text"></span>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary" data-cursor-magnetic>View Work</a>
+                    <a href="#contact" class="btn btn-outline" data-cursor-magnetic>Contact Me</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="image-wrapper" data-tilt
+                    style="display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                    <!-- Hero Image Dynamic -->
+                    {% if hero.image %}
+                    <img src="{{ url_for('static', filename=hero.image.replace('static/', '').replace('\\', '/')) }}"
+                        alt="Profile" style="width: 100%; height: 100%; object-fit: cover;">
+                    {% else %}
+                    <div
+                        style="font-size: 2rem; font-weight: bold; color: var(--text-main); text-align: center; padding: 1rem;">
+                        Dipak Bhangale
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Macros -->
+    {% from 'macros/cards.html' import project_card, skill_category %}
+
+    <!-- About Section -->
+    <section id="about" class="container">
+        <br><br>
+        <h2 class="section-title">{{ about.title }}</h2>
+        <div class="card" data-tilt>
+            <p style="font-size: 1.1rem; color: var(--text-muted);">
+                {{ about.description }}
+            </p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="container">
+        <br><br><br>
+        <h2 class="section-title">Technical Skills</h2>
+
+        {% for category in skills %}
+        {{ skill_category(category) }}
+        {% endfor %}
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="container">
+        <br><br><br>
+        <h2 class="section-title">Experience & Education</h2>
+
+        <div class="timeline">
+            {% for item in experience %}
+            <div class="timeline-item">
+                <div class="timeline-content card" data-tilt>
+                    <span class="timeline-date">{{ item.year }}</span>
+                    <h3>{{ item.title }}</h3>
+                    <h4 style="color: var(--primary);">{{ item.subtitle }}</h4>
+                    <p style="color: var(--text-muted);">{{ item.details }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="container">
+        <br><br><br>
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            {% for project in projects %}
+            {{ project_card(project) }}
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Project Modal Structure -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-title">Project Title</h2>
+            <div id="modal-body">
+                <!-- Content injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="container">
+        <br><br><br>
+        <h2 class="section-title">Certifications</h2>
+
+        <div class="certificates-wrapper">
+            <div class="certificates-grid" id="certificates-grid">
+                <!-- Certificates will be dynamically injected via script.js using JSON (or JS array, but we are migrating to JSON, so script.js needs updates too) -->
+                <!-- Actually since we are using Flask, we can render them server side! -->
+                <!-- For now, I'll keep the JS generation to minimize script.js changes, BUT I need to pass the data to script.js OR render here -->
+                <!-- Let's render here and remove the JS generation to be 'purer' Flask -->
+
+                {% for cert in certificates %}
+                <div class="certificate-card {% if loop.index <= 6 %}visible{% endif %}" data-tilt
+                    style="display: {% if loop.index <= 6 %}block{% else %}none{% endif %};">
+                    <div class="cert-image-wrapper">
+                        <img src="{{ url_for('static', filename=cert.img.replace('static/', '')) }}"
+                            alt="{{ cert.title }}" loading="lazy">
+                    </div>
+                    <div class="cert-info">
+                        <h3>{{ cert.title }}</h3>
+                        <a href="{{ url_for('static', filename=cert.img.replace('static/', '')) }}" target="_blank"
+                            rel="noopener noreferrer" class="view-cert-btn" data-cursor-magnetic>
+                            View Certificate
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="load-more-container">
+            <button id="load-more-btn" class="btn btn-primary" data-cursor-magnetic>Show More Certificates</button>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container">
+        <br><br><br>
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-form">
+            <form id="contactForm">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Your Name" required>
+                </div>
+                <!-- Honeypot for Spam Protection (Hidden) -->
+                <div class="form-group" style="display: none;">
+                    <label>Spambot Check</label>
+                    <input type="text" name="honeypot" id="honeypot">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea id="message" name="message" class="form-control" rows="5"
+                        placeholder="How can I help you?" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" id="submit-btn" style="width: 100%;"
+                    data-cursor-magnetic>Send
+                    Message</button>
+            </form>
+            <div style="text-align: center; margin-top: 2rem;">
+                <p style="color: var(--text-muted);">
+                    <i class="fa-solid fa-envelope"></i> {{ contact.email }} <br>
+                    <i class="fa-solid fa-phone"></i> {{ contact.phone }}
+                </p>
+                <div class="social-links">
+                    {% for social in contact.social_links %}
+                    <a href="{{ social.url }}" target="_blank" rel="noopener noreferrer" class="social-icon"
+                        data-cursor-magnetic>
+                        {% if 'fa-' in social.icon %}
+                        <i class="{{ social.icon }}"></i>
+                        {% else %}
+                        <img src="{{ url_for('static', filename=social.icon.replace('static/','').replace('\\','/')) }}"
+                            alt="{{ social.platform }}" style="width: 24px; height: 24px; object-fit: contain;">
+                        {% endif %}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Dipak Bhangale. All rights reserved.</p>
+        <br>
+        <a href="{{ url_for('auth.login') }}"
+            style="font-size: 0.8rem; color: var(--text-muted); text-decoration: none; opacity: 0.5;">Admin Login</a>
+    </footer>
+
+    <!-- Loading Animation Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <p>Sending...</p>
+    </div>
+
+    <!-- Success Popup -->
+    <div id="success-popup" class="success-popup">
+        <div class="popup-content">
+            <div class="success-icon">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h3>Message Sent!</h3>
+            <p>Thanks for reaching out. I'll get back to you soon!</p>
+            <button id="close-popup-btn" class="btn btn-primary">Awesome</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    <script>
+        // Pass backend data to frontend script
+        window.projectData = {{ projects | tojson }};
+    </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

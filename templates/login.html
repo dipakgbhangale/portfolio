@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .login-card {
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 1rem;
+            border: 1px solid var(--border);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-card h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary);
+        }
+
+        .error-msg {
+            background: rgba(220, 38, 38, 0.2);
+            color: #fca5a5;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            border: 1px solid #ef4444;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-card">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <p
+                style="color: var(--text-muted); font-size: 1.1rem; font-style: italic; margin-bottom: 1rem; line-height: 1.6;">
+                “Not everyone is meant to be here.<br>
+                But you found the hidden door.
+            </p>
+            <h2 style="color: var(--primary); font-size: 1.4rem; font-weight: 600;">Let’s see if you deserve what lies
+                ahead…”</h2>
+        </div>
+        {% if error %}
+        <div class="error-msg">{{ error }}</div>
+        {% endif %}
+        <form method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" name="username" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+        </form>
+        <div style="text-align: center; margin-top: 1rem;">
+            <a href="{{ url_for('main.home') }}" style="color: var(--text-muted); text-decoration: none;">&larr; Back to
+                Portfolio</a>
+        </div>
+    </div>
+</body>
+
+</html>

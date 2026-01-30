@@ -1,0 +1,54 @@
+[
+    {
+        "title": "Accessing Hadoop Data Using Hive",
+        "img": "static/uploads/certificates/Accessing Hadoop Data Using Hive Cognitive class.png"
+    },
+    {
+        "title": "Build Your Own ChatBot",
+        "img": "static/uploads/certificates/Build Your Own ChatBot Cognitive Class.png"
+    },
+    {
+        "title": "CCNA: Introduction to Networks",
+        "img": "static/uploads/certificates/CCNA-Introduction to Networks Cisco.png"
+    },
+    {
+        "title": "Data Analysis with Python",
+        "img": "static/uploads/certificates/Data Analysis with Python IBM Cognitive Class.png"
+    },
+    {
+        "title": "Ethical Hacking (EduSkills)",
+        "img": "static/uploads/certificates/Ethical Hacking EduSkills.png"
+    },
+    {
+        "title": "GenAI 101 with Pieces",
+        "img": "static/uploads/certificates/GenAI 101 with pieces.png"
+    },
+    {
+        "title": "Introduction to Networking",
+        "img": "static/uploads/certificates/Introduction to Networking for Cyber Profectionals Zscaler.png"
+    },
+    {
+        "title": "LaTeX Training",
+        "img": "static/uploads/certificates/LaTeX.png"
+    },
+    {
+        "title": "NDG Linux Essentials",
+        "img": "static/uploads/certificates/NDG Linux Essentials.png"
+    },
+    {
+        "title": "PCAP: Python Essentials",
+        "img": "static/uploads/certificates/PCAP-Programming Essentials in Python Cisco.png"
+    },
+    {
+        "title": "Prompt Engineering for Everyone",
+        "img": "static/uploads/certificates/Prompt Engineering for Everyone IBM Cognitive Class.png"
+    },
+    {
+        "title": "Ethical Hacking (Cisco)",
+        "img": "static/uploads/certificates/ethical Hacking cisco.png"
+    },
+    {
+        "title": "IoT and Digital Transformation",
+        "img": "static/uploads/certificates/introduction to IoT and Digital Transformation Cisco.png"
+    }
+]

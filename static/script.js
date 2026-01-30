@@ -78,16 +78,23 @@ if (window.matchMedia("(pointer: fine)").matches) {
         }, { duration: 500, fill: "forwards" });
     });
 
-    // Magnet Effect & Hover State
-    const interactiveElements = document.querySelectorAll('a, button, .card, .skill-item, .nav-logo');
-    interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
+    // Magnet Effect & Hover State (Event Delegation for better performance & dynamic elements)
+    document.addEventListener('mouseover', (e) => {
+        const target = e.target.closest('a, button, .card, .skill-item, .nav-logo, .view-cert-btn');
+        if (target) {
             body.classList.add('hovering');
-        });
-        el.addEventListener('mouseleave', () => {
-            body.classList.remove('hovering');
-        });
+        }
     });
+
+    document.addEventListener('mouseout', (e) => {
+        const target = e.target.closest('a, button, .card, .skill-item, .nav-logo, .view-cert-btn');
+        if (target) {
+            body.classList.remove('hovering');
+        }
+    });
+
+    // Note: The specific "magnetic" pull effect would require per-element logic, 
+    // but the cursor expansion (hovering class) works best with delegation here.
 }
 
 // 2. AntiGravity Particle Background (Canvas)
@@ -168,37 +175,22 @@ const modalBody = document.getElementById('modal-body');
 const closeModal = document.querySelector('.close-modal');
 const viewBtns = document.querySelectorAll('.view-details-btn');
 
-const projectDetails = {
-    project1: {
-        title: "APSIT NOTIFY",
-        content: "A comprehensive notification system for college students.<br><br><b>Key Features:</b><br>- Secure Login System<br>- Real-time Email Alerts (EmailJS)<br>- Responsive Dashboard<br>- Scheduled Reminders"
-    },
-    project2: {
-        title: "Retail Billing System",
-        content: "A desktop application for small businesses to manage billing and inventory.<br><br><b>Tech Stack:</b> Python, Tkinter<br><b>Features:</b><br>- Admin/Employee Login<br>- Invoice Generation<br>- Inventory Tracking"
-    },
-    project3: {
-        title: "QUICKDEAL",
-        content: "An E-Commerce landing page design.<br><br><b>Focus:</b><br>- Modern UI/UX<br>- Responsive Grid Layouts<br>- Product Showcases"
-    },
-    project4: {
-        title: "College App (GPM)",
-        content: "Android/Web solution for Government Polytechnic Mumbai.<br><br><b>Utility:</b><br>- Notice Board updates<br>- Event Calendars<br>- Resource Sharing"
-    }
-};
-
 viewBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
         e.preventDefault();
         const projectId = btn.getAttribute('data-project');
-        const data = projectDetails[projectId];
+
+        // Find project in the injected global data
+        const data = window.projectData ? window.projectData.find(p => p.id === projectId) : null;
 
         if (data) {
             modalTitle.textContent = data.title;
-            modalBody.innerHTML = data.content;
+            modalBody.innerHTML = data.modal_content || data.description; // Fallback
             modal.style.display = "flex";
             // Trigger animation
             setTimeout(() => modal.classList.add('show'), 10);
+        } else {
+            console.error("Project data not found for ID:", projectId);
         }
     });
 });
@@ -249,56 +241,113 @@ function observeElements() {
     });
 }
 
+// --- DYNAMIC CONTENT GENERATION ---
+// (Migrated to Flask Jinja2 Templates)
+
 // Certificate Load More Logic
-const cards = document.querySelectorAll('.certificate-card');
 const loadMoreBtn = document.getElementById('load-more-btn');
 let itemsToShow = 6;
-
-// Show initial items
-cards.forEach((card, index) => {
-    if (index < itemsToShow) {
-        card.style.display = 'block';
-        card.classList.add('visible');
-    }
-});
-
-if (cards.length <= itemsToShow && loadMoreBtn) {
-    loadMoreBtn.style.display = 'none';
-}
+const totalItems = document.querySelectorAll('.certificate-card').length;
 
 if (loadMoreBtn) {
+    // Hide if not enough items
+    if (totalItems <= itemsToShow) {
+        loadMoreBtn.style.display = 'none';
+    }
+
     loadMoreBtn.addEventListener('click', () => {
-        const currentlyVisible = document.querySelectorAll('.certificate-card.visible').length;
-        const nextBatch = currentlyVisible + 3;
+        itemsToShow += 3;
+        const cards = document.querySelectorAll('.certificate-card');
 
         cards.forEach((card, index) => {
-            if (index < nextBatch) {
+            if (index < itemsToShow) {
                 card.style.display = 'block';
-                setTimeout(() => card.classList.add('visible'), 10);
+                setTimeout(() => card.classList.add('visible'), 50);
             }
         });
 
-        if (nextBatch >= cards.length) {
+        if (itemsToShow >= totalItems) {
             loadMoreBtn.style.display = 'none';
         }
     });
 }
 
-// Contact Form Logic
 const contactForm = document.getElementById('contactForm');
+
 if (contactForm) {
     contactForm.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const message = document.getElementById('message').value;
+        // 1. Spam Protection (Honeypot)
+        const honeypot = document.getElementById('honeypot').value;
+        if (honeypot) {
+            console.warn("Spambot detected!");
+            return; // Silently fail for bots
+        }
 
-        const subject = `Portfolio Contact from ${name}`;
-        const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0AMessage:%0D%0A${message}`;
+        // 2. UI Elements
+        const loadingOverlay = document.getElementById('loading-overlay');
+        const successPopup = document.getElementById('success-popup');
+        const submitBtn = document.getElementById('submit-btn');
+        const closePopupBtn = document.getElementById('close-popup-btn');
 
-        const mailtoLink = `mailto:dipakbhangale@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+        // Show Loading
+        loadingOverlay.classList.add('active');
+        submitBtn.disabled = true;
 
-        window.location.href = mailtoLink;
+        // 3. EmailJS Send
+        if (typeof CONFIG === 'undefined') {
+            console.error("Config file not loaded!");
+            showError("Configuration error. Please reinstall config.");
+            loadingOverlay.classList.remove('active');
+            submitBtn.disabled = false;
+            return;
+        }
+
+        emailjs.sendForm(CONFIG.EMAILJS_SERVICE_ID, CONFIG.EMAILJS_TEMPLATE_ID, this)
+            .then(function () {
+                // SUCCESS
+                loadingOverlay.classList.remove('active');
+                successPopup.classList.add('active');
+                contactForm.reset();
+                submitBtn.disabled = false;
+            }, function (error) {
+                // ERROR
+                loadingOverlay.classList.remove('active');
+                submitBtn.disabled = false;
+
+                // Show Error Notification
+                showError("Failed to send message. Please try again later.");
+                console.error('EmailJS Error:', error);
+            });
+
+        // Close Popup Event
+        closePopupBtn.addEventListener('click', () => {
+            successPopup.classList.remove('active');
+        });
+
+        // Close on outside click
+        successPopup.addEventListener('click', (e) => {
+            if (e.target === successPopup) {
+                successPopup.classList.remove('active');
+            }
+        });
     });
 }
+
+function showError(message) {
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'error-notification';
+    errorDiv.innerText = message;
+    document.body.appendChild(errorDiv);
+
+    // Trigger animation
+    setTimeout(() => errorDiv.classList.add('show'), 100);
+
+    // Remove after 3 seconds
+    setTimeout(() => {
+        errorDiv.classList.remove('show');
+        setTimeout(() => errorDiv.remove(), 300);
+    }, 4000);
+}
+
