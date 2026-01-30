@@ -93,7 +93,9 @@ def upload_file():
         return jsonify({"error": "No selected file"}), 400
         
     if file and allowed_file(file.filename):
-        filename = secure_filename(file.filename)
+        # Enforce web-safe filenames: Replace spaces with underscores
+        safe_name = file.filename.replace(' ', '_')
+        filename = secure_filename(safe_name)
         # Create subfolder if it doesn't exist (security check needed in prod, but ok for now)
         target_dir = os.path.join(Config.UPLOAD_FOLDER, folder)
         os.makedirs(target_dir, exist_ok=True)
